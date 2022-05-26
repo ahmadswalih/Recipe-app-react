@@ -1,5 +1,5 @@
 ## Recipe app
-This is a Recipe application build using Reactjs .
+This is a Recipe application build using Reactjs .<br>
 The application is using spoonacular api to fetch the recipe details.
 
 currently the application is in production phase.
