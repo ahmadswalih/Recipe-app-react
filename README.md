@@ -4,7 +4,7 @@ The application is using spoonacular api to fetch the recipe details.
 
 currently the application is in production phase.
 
-### <a href="https://recipe-app-swalih.netlify.app/">Watch here</a> (desktop version)
+#### <a href="https://recipe-app-swalih.netlify.app/">Watch here</a> (desktop version)
 ## Features
 -Styled Components <br>
 -Clean/Modern UI <br>
