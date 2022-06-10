@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { DetailWrapper, Button, Info} from "../StyledComponents";
+import { DetailWrapper, Button, Info } from "../StyledComponents";
 
 const Recipe = () => {
   const [details, setDetails] = useState({});
   const [activeTab, setActiveTab] = useState("instructions");
-
+  const [isMobile, setIsMobile] = useState(false);
   const params = useParams();
 
   const fetchDetails = async () => {
@@ -18,7 +18,7 @@ const Recipe = () => {
 
   useEffect(() => {
     let isMounted = true;
-
+    deviceSize();
     fetchDetails().then((data) => {
       if (isMounted) setDetails(data);
     });
@@ -27,6 +27,14 @@ const Recipe = () => {
     };
   }, [params.id]);
 
+  const deviceSize = () => {
+    if (window.innerWidth === "600px") {
+      return setIsMobile(true);
+    } else {
+      return;
+    }
+  };
+  console.log("working");
   return (
     <DetailWrapper>
       <div>
@@ -34,19 +42,39 @@ const Recipe = () => {
         <img src={details.image} alt={details.title} />
       </div>
       <Info>
-      <Button
-          className={activeTab === "instructions" ? "active" : ""}
-          onClick={() => setActiveTab("instructions")}
-        >
-          Instructions
-        </Button>
-        <Button
-          className={activeTab === "ingredients" ? "active" : ""}
-          onClick={() => setActiveTab("ingredients")}
-        >
-          Ingredients
-        </Button>
-        
+        {isMobile ? (
+          <>
+            <Button
+              className={activeTab === "instructions" ? "active" : ""}
+              onClick={() => setActiveTab("instructions")}
+            >
+              Instructions
+            </Button>
+
+            <Button
+              className={activeTab === "ingredients" ? "active" : ""}
+              onClick={() => setActiveTab("ingredients")}
+            >
+              Ingredients
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button
+              className={activeTab === "instructions" ? "active" : ""}
+              onClick={() => setActiveTab("instructions")}
+            >
+              Instructions
+            </Button>
+            <Button
+              className={activeTab === "ingredients" ? "active" : ""}
+              onClick={() => setActiveTab("ingredients")}
+            >
+              Ingredients
+            </Button>
+          </>
+        )}
+
         {activeTab === "ingredients" && (
           <ul>
             {details.extendedIngredients.map(({ id, original }) => (

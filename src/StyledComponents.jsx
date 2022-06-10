@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { NavLink ,Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 export const Wrapper = styled.div`
   margin: 4rem 0;
- 
 `;
 
 export const Card = styled.div`
@@ -35,7 +34,6 @@ export const Card = styled.div`
     align-items: center;
     z-index: 10;
   }
- 
 `;
 
 export const Gradient = styled.div`
@@ -103,6 +101,18 @@ export const Slink = styled(NavLink)`
       color: white;
     }
   }
+  @media only screen and (max-width: 768px) {
+    border-radius: 50%;
+    width: 88px;
+    margin-right: 1rem;
+    margin: auto;
+    svg {
+      justify-content: center;
+    }
+    h4 {
+      font-size: 0.8rem;
+    }
+  }
 `;
 export const FormStyle = styled.form`
   margin: 0rem 20rem;
@@ -128,14 +138,15 @@ export const FormStyle = styled.form`
     transform: translate(100%, -50%);
     color: white;
   }
+
+  @media only screen and (max-width: 600px) {
+    margin: 0rem 1rem;
+  }
 `;
 export const DetailWrapper = styled.div`
   margin-top: 10rem inherit 5rem;
   margin-bottom: 5rem;
   display: flex;
-  @media (max-width: 1068px) {
-    flex-direction: column;
-  }
   .active {
     background: linear-gradient(35deg, #494949, #313131);
     color: white;
@@ -158,36 +169,42 @@ export const DetailWrapper = styled.div`
       margin-top: 2rem;
     }
   }
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+
+    img {
+      width: 23rem;
+    }
+  }
 `;
 export const Button = styled.button`
-    padding: 1rem 2rem;
-    color: #313131;
-    background: white;
-    border: 2px solid black;
-    margin-right: 2rem;
-    font-weight: 600;
+  padding: 1rem 2rem;
+  color: #313131;
+  background: white;
+  border: 2px solid black;
+  margin-right: 2rem;
+  font-weight: 600;
 `;
 export const Info = styled.div`
   margin-left: 10rem;
 
-  @media (max-width: 1068px) {
+  @media only screen and (max-width: 600px) {
     margin-top: 3rem;
     margin-left: 1rem;
   }
 `;
 export const Logo = styled(Link)`
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: 400;
-    font-family: 'Lobster Two' , cursive;
-
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-family: "Lobster Two", cursive;
 `;
 export const Nav = styled.div`
   padding: 4rem 0rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  svg{
+  svg {
     font-size: 2rem;
   }
-`
+`;

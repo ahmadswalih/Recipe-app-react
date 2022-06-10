@@ -4,11 +4,13 @@ import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import { Wrapper, Gradient, Card } from "../StyledComponents";
 import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
+
 const Veggie = () => {
   const [veggie, setVeggie] = useState([]);
-
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     getVeggie();
+    deviceSize();
   }, []);
 
   const getVeggie = async () => {
@@ -27,33 +29,71 @@ const Veggie = () => {
     }
   };
 
+  const deviceSize = () => {
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      // true for mobile device
+      return setIsMobile(true);
+    } else {
+      return;
+    }
+  };
   return (
     <div>
       <Wrapper>
         <h3>Our Veggie Picks</h3>
-        <Splide
-          options={{
-            perPage: 3,
-            arrows: false,
-            pagination: false,
-            drag: "free",
-            gap: "5rem",
-          }}
-        >
-          {veggie.map((recipe) => {
-            return (
-              <SplideSlide key={recipe.id}>
-                <Card key={recipe.id}>
-                  <Link to={`/recipe/${recipe.id}`}>
-                  <p>{recipe.title}</p>
-                  <img src={recipe.image} alt={recipe.title} />
-                  <Gradient />
-                  </Link>
-                </Card>
-              </SplideSlide>
-            );
-          })}
-        </Splide>
+        {isMobile ? (
+          <Splide
+            options={{
+              perPage: 1,
+              arrows: false,
+              pagination: false,
+              drag: "free",
+              gap: "3rem",
+            }}
+          >
+            {veggie.map((recipe) => {
+              return (
+                <SplideSlide key={recipe.id}>
+                  <Card key={recipe.id}>
+                    <Link to={`/recipe/${recipe.id}`}>
+                      <p>{recipe.title}</p>
+                      <img src={recipe.image} alt={recipe.title} />
+                      <Gradient />
+                    </Link>
+                  </Card>
+                </SplideSlide>
+              );
+            })}
+          </Splide>
+        ) : (
+          <Splide
+            options={{
+              perPage: 3,
+              arrows: false,
+              pagination: false,
+              drag: "free",
+              gap: "5rem",
+            }}
+          >
+            {veggie.map((recipe) => {
+              return (
+                <SplideSlide key={recipe.id}>
+                  <Card key={recipe.id}>
+                    <Link to={`/recipe/${recipe.id}`}>
+                      <p>{recipe.title}</p>
+                      <img src={recipe.image} alt={recipe.title} />
+                      <Gradient />
+                    </Link>
+                  </Card>
+                </SplideSlide>
+              );
+            })}
+          </Splide>
+        )}
       </Wrapper>
     </div>
   );
