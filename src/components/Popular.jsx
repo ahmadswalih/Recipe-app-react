@@ -28,7 +28,9 @@ const Popular = () => {
     }
   };
   const deviceSize = () => {
-    if (window.innerWidth === "600px") {
+    if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )) {
       // true for mobile device
       return setIsMobile(true);
     } else {
